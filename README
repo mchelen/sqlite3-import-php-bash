@@ -1,0 +1,44 @@
+Creation
+--------
+
+wget ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/file_list.txt
+
+
+remove first line in editor
+
+sqlite3 database.db 'create table filelist ( path varchar(128), title varchar(128), id varchar(128) );'
+
+
+or 
+sqlite3
+create table filelist ( path varchar(128), title varchar(128), id varchar(128) );
+
+
+
+.separator "\t"
+.import file_list.txt filelist
+
+
+
+
+
+echo '.separator "\t"' | sqlite3 database.db
+
+echo '.import file_list.txt filelist' | sqlite3 database.db
+
+
+Usage
+-----------
+select * from filelist where title like '%Plos Bio%' 
+
+
+
+Sources
+-----------
+http://www.pubmedcentral.nih.gov/about/ftp.html
+http://www.netadmintools.com/art572.html
+http://www.sqlite.org/sqlite.html
+
+
+License
+------------
